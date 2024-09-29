@@ -72,7 +72,7 @@ class ChatResponse(BaseModel):
     function_calls: list
 
 @app.post("/chat")
-async def chat_with_scio(message: str = Form(...), user_id: str = Form(...), files: list[UploadFile] = File(None)):
+async def chat_with_scio(messages: str = Form(...), user_id: str = Form(...), files: list[UploadFile] = File(None)):
     
     print(user_id)
     try:
