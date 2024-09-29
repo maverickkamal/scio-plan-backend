@@ -1,0 +1,30 @@
+# Ignore virtual environment
+.venv/
+scio-ai-planner/
+.vscode/
+
+# Ignore specific Python files
+main.py
+plan_tool.py
+test_auth.py
+test_auth_v2.py
+test_auth_v3.py
+testing.py
+test_schedule.py
+
+
+
+# Ignore all compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+*.json
+*.pickle
+*.db
+
+
+# Ignore environment variables file
+.env
+
+# Ignore system files
+.DS_Store
