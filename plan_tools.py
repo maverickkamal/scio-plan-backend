@@ -11,7 +11,7 @@ import os
 from firebase_config import db
 from mem0 import MemoryClient
 
-client = MemoryClient(api_key=os.environ.get(MEM0AI_API_KEY))
+client = MemoryClient(api_key=os.environ.get("MEM0AI_API_KEY"))
 
 def add_memory(history: list, user_id: str):
     
