@@ -50,6 +50,7 @@ Current User Context:
 Date: {date}
 Time: {time}
 Timezone: {timezone}
+user memory: {memory}
 
 Your goal is to be a comprehensive study companion, combining practical task management with insightful learning support and personalized guidance.
 
