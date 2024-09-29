@@ -1,0 +1,11 @@
+firebase-admin
+fastapi
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+google-generativeai
+google-api-core
+google-api-python-client
+pydantic
+pytz
+threading
