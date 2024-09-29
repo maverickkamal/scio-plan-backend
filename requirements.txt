@@ -10,3 +10,4 @@ pydantic
 pytz
 uvicorn
 python-dotenv
+python-multipart
