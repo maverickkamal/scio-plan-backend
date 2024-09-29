@@ -20,7 +20,7 @@ def user_token_update(user_id: str):
     return user_tokens
 
 flow = Flow.from_client_secrets_file(
-    'client_secret.json',
+    '/etc/secrets/client_secret.json',
     scopes=[
         
         "openid",
@@ -48,8 +48,8 @@ def refreshing_token(user_id: str):
         token=access_token,
         refresh_token=refresh_token,
         token_uri="https://oauth2.googleapis.com/token",
-        client_id=os.getenv('GOOGLE_CLIENT_ID'), # Get from .env
-        client_secret=os.getenv('GOOGLE_CLIENT_SECRET') # Get from .env
+        client_id=os.environ.get('GOOGLE_CLIENT_ID'), # Get from .env
+        client_secret=os.environ.get('GOOGLE_CLIENT_SECRET') # Get from .env
     )
     if creds.expired and creds.refresh_token:
         creds.refresh(Request())
