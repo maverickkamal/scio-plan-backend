@@ -12,3 +12,4 @@ uvicorn
 python-dotenv
 python-multipart
 tavily-python
+mem0ai
