@@ -8,3 +8,4 @@ google-api-core
 google-api-python-client
 pydantic
 pytz
+uvicorn
