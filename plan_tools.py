@@ -13,9 +13,9 @@ from mem0 import MemoryClient
 
 client = MemoryClient(api_key=os.environ.get("MEM0AI_API_KEY"))
 
-def add_memory(history: list, user_id: str):
+def add_memory(history, user_id):
     print("adding memory")
-    client.add(history, user_id=user_id, output_format="v1.1")
+    client.add(history, user_id=user_id)
     print("processing memory")
     return "memory added"
 
