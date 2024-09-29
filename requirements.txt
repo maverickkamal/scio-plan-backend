@@ -8,5 +8,7 @@ google-api-core
 google-api-python-client
 pydantic
 pytz
-threading
+uvicorn
+python-dotenv
+python-multipart
 tavily
