@@ -75,7 +75,6 @@ class ChatResponse(BaseModel):
 async def chat_with_scio(messages: str = Form(...), user_id: str = Form(...), files: list[UploadFile] = File(None)):
     
     print(user_id)
-    print(message)
     try:
         message = f"""User message: {messages}
 
@@ -84,6 +83,7 @@ async def chat_with_scio(messages: str = Form(...), user_id: str = Form(...), fi
     - Always use the appropriate function to perform actions. Do not claim to have done something without actually calling the function. If a function is available for a specific task, use it instead of providing information from your training data.
     - Ask clarifying questions if not enough information is available to complete my request
     """
+        print(message)
         UserContext.set_user_id(user_id)
         uploaded_files = []
         if files:
