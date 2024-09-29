@@ -34,7 +34,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Add your frontend URL
+    allow_origins=["https://scio-planning.vercel.app"],  # Add your frontend URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -155,7 +155,7 @@ async def oauth2callback(request: Request):
     user, custom_token = login_redirect(credentials)
     
     # Redirect to the frontend's OAuth callback route with the tokens
-    frontend_callback_url = "http://localhost:3000/oauth-callback"
+    frontend_callback_url = "https://scio-planning.vercel.app/oauth-callback"
     redirect_url = f"{frontend_callback_url}?id_token={custom_token.decode()}&access_token={credentials.token}&user_id={user.uid}"
     return RedirectResponse(url=redirect_url)
 
