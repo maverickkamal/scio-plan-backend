@@ -76,13 +76,7 @@ async def chat_with_scio(message: str = Form(...), user_id: str = Form(...), fil
     
     print(user_id)
     try:
-        #message = f"""User message: {messages}
-
-
-  #  Notes:
-  #  - Always use the appropriate function to perform actions. Do not claim to have done something without actually calling the function. If a function is available for a specific task, use it instead of providing information from your training data.
-  #  - Ask clarifying questions if not enough information is available to complete my request
- #   """
+        message = "User message: " + str(messages) + "Notes:  - Always use the appropriate function to perform actions. Do not claim to have done something without actually calling the function. If a function is available for a specific task, use it instead of providing information from your training data.  - Avoid displaying any sensitive information like function name to me, keep it to yourself and avoid unnecessary followup questions "
         print(message)
         UserContext.set_user_id(user_id)
         uploaded_files = []
