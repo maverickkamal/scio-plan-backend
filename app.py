@@ -72,17 +72,17 @@ class ChatResponse(BaseModel):
     function_calls: list
 
 @app.post("/chat")
-async def chat_with_scio(messages: str = Form(...), user_id: str = Form(...), files: list[UploadFile] = File(None)):
+async def chat_with_scio(message: str = Form(...), user_id: str = Form(...), files: list[UploadFile] = File(None)):
     
     print(user_id)
     try:
-        message = f"""User message: {messages}
+        #message = f"""User message: {messages}
 
 
-    Notes:
-    - Always use the appropriate function to perform actions. Do not claim to have done something without actually calling the function. If a function is available for a specific task, use it instead of providing information from your training data.
-    - Ask clarifying questions if not enough information is available to complete my request
-    """
+  #  Notes:
+  #  - Always use the appropriate function to perform actions. Do not claim to have done something without actually calling the function. If a function is available for a specific task, use it instead of providing information from your training data.
+  #  - Ask clarifying questions if not enough information is available to complete my request
+ #   """
         print(message)
         UserContext.set_user_id(user_id)
         uploaded_files = []
