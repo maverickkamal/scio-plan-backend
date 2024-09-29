@@ -29,7 +29,7 @@ flow = Flow.from_client_secrets_file(
         "https://www.googleapis.com/auth/calendar",
         "https://www.googleapis.com/auth/tasks"
     ],
-    redirect_uri="http://localhost:8000/oauth2callback"
+    redirect_uri="https://scio-plan-backend.onrender.com/oauth2callback"
 )
 
 def get_user_credentials(user_id: str):
