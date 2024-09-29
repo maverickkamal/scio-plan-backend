@@ -78,9 +78,12 @@ async def chat_with_scio(message: str = Form(...), user_id: str = Form(...), fil
         print(message)
         UserContext.set_user_id(user_id)
         memory = search_memory(message, user_id)
+        print(memory)
         persona = scio_persona(memory)
+        print(persona)
         model = genai.GenerativeModel(model_name='gemini-1.5-flash-002', tools=tool_functions, system_instruction=persona)
         chat = model.start_chat(history=history, enable_automatic_function_calling=True)
+        print("model init")
 
         uploaded_files = []
         if files:
