@@ -72,11 +72,10 @@ class ChatResponse(BaseModel):
     function_calls: list
 
 @app.post("/chat")
-async def chat_with_scio(messages: str = Form(...), user_id: str = Form(...), files: list[UploadFile] = File(None)):
+async def chat_with_scio(message: str = Form(...), user_id: str = Form(...), files: list[UploadFile] = File(None)):
     
     print(user_id)
     try:
-        message = "User message: " + str(messages) + "Notes:  - Always use the appropriate function to perform actions. Do not claim to have done something without actually calling the function. If a function is available for a specific task, use it instead of providing information from your training data.  - Avoid displaying any sensitive information like function name to me, keep it to yourself and avoid unnecessary followup questions "
         print(message)
         UserContext.set_user_id(user_id)
         uploaded_files = []
@@ -100,7 +99,8 @@ async def chat_with_scio(messages: str = Form(...), user_id: str = Form(...), fi
             uploaded_files.clear()
         else:
             print("no files")
-            response = chat.send_message(message)
+            response = chat.send_message(f"User message: {message}    Notes:  - Always use the appropriate function to perform actions. Do not claim to have done something without actually calling the function. If a function is available for a specific task, use it instead of providing information from your training data.  - Avoid displaying any sensitive information like function name to me, keep it to yourself and avoid unnecessary followup questions ")
+        
             print("response here")
         return JSONResponse(content={
             "content": response.text
