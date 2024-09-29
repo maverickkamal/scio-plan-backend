@@ -7,8 +7,23 @@ from google.oauth2.credentials import Credentials
 from tavily import TavilyClient
 import json
 import pytz
+import os
 from firebase_config import db
+from mem0 import MemoryClient
 
+client = MemoryClient(api_key=os.environ.get(MEM0AI_API_KEY))
+
+def add_memory(history: list, user_id: str):
+    
+    client.add(history, user_id=user_id, output_format="v1.1")
+    return "memory added"
+
+def search_memory(query: str, user_id: str):
+    try:
+        memory = client.search(query, user_id=user_id, output_format="v1.1")
+        return memory 
+    except HttpError as error:
+        return f"An error occurred: {error}"
 
 
 #helper functions
@@ -904,7 +919,7 @@ def search_web(query: str) -> str:
     Returns:
         str: A formatted string containing the search results.
     """
-    client = TavilyClient(api_key=os.getenv('TAVILY_API_KEY'))
+    client = TavilyClient(api_key=os.environ.get('TAVILY_API_KEY'))
     response = client.search(query)
     return response
 
