@@ -4,6 +4,7 @@ from googleapiclient.errors import HttpError
 from datetime import datetime, timedelta
 from google_auth import *
 from google.oauth2.credentials import Credentials
+from tavily import TavilyClient
 import json
 import pytz
 from firebase_config import db
@@ -893,4 +894,17 @@ def get_saved_schedule():
     except Exception as e:
         raise Exception(f"An error occurred while retrieving the schedule: {str(e)}")
 
+def search_web(query: str) -> str:
+    """
+    Search the web for information.
+
+    Args:
+        query (str): The search query.
+
+    Returns:
+        str: A formatted string containing the search results.
+    """
+    client = TavilyClient(api_key=os.getenv('TAVILY_API_KEY'))
+    response = client.search(query)
+    return response
 

@@ -42,6 +42,7 @@ app.add_middleware(
 
 # --- Gemini Model Setup ---
 tool_functions = [
+    search_web,
     get_calendar_list,
     create_calendar_event,
     quick_add_event,
@@ -58,8 +59,10 @@ tool_functions = [
     get_saved_schedule
 ]
 
-model = genai.GenerativeModel(model_name='gemini-1.5-flash-002', tools=tool_functions)
-chat = model.start_chat(enable_automatic_function_calling=True)
+history = []
+
+model = genai.GenerativeModel(model_name='gemini-1.5-flash-002', tools=tool_functions, system_instruction=PERSONA)
+chat = model.start_chat(history=history, enable_automatic_function_calling=True)
 
 class UserInput(BaseModel):
     message: str
@@ -69,11 +72,18 @@ class ChatResponse(BaseModel):
     function_calls: list
 
 @app.post("/chat")
-async def chat_with_scio(message: str = Form(...), user_id: str = Form(...), files: list[UploadFile] = File(None)):
+async def chat_with_scio(messages: str = Form(...), user_id: str = Form(...), files: list[UploadFile] = File(None)):
     
     print(user_id)
     print(message)
     try:
+        message = f"""User message: {messages}
+
+
+    Notes:
+    - Always use the appropriate function to perform actions. Do not claim to have done something without actually calling the function. If a function is available for a specific task, use it instead of providing information from your training data.
+    - Ask clarifying questions if not enough information is available to complete my request
+    """
         UserContext.set_user_id(user_id)
         uploaded_files = []
         if files:
