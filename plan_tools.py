@@ -14,13 +14,16 @@ from mem0 import MemoryClient
 client = MemoryClient(api_key=os.environ.get("MEM0AI_API_KEY"))
 
 def add_memory(history: list, user_id: str):
-    
+    print("adding memory")
     client.add(history, user_id=user_id, output_format="v1.1")
+    print("processing memory")
     return "memory added"
 
 def search_memory(query: str, user_id: str):
     try:
+        print("searching memory")
         memory = client.search(query, user_id=user_id, output_format="v1.1")
+        print("done searching")
         return memory 
     except HttpError as error:
         return f"An error occurred: {error}"
