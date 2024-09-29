@@ -21,7 +21,7 @@ load_dotenv()
 
 # Set up Gemini API key
 try:
-    genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
+    genai.configure(api_key=os.environ.get('GOOGLE_API_KEY'))
 except KeyError:
     raise HTTPException(status_code=500, detail="GOOGLE_API_KEY not found in environment variables.")
 
