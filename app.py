@@ -8,7 +8,7 @@ from fastapi.responses import RedirectResponse, JSONResponse  # Add JSONResponse
 from pydantic import BaseModel
 import google.generativeai as genai
 from dotenv import load_dotenv
-from utils.persona import PERSONA
+from utils.persona import scio_persona
 from plan_tools import *
 from google_auth import *
 from firebase_admin import firestore
@@ -61,8 +61,6 @@ tool_functions = [
 
 history = []
 
-model = genai.GenerativeModel(model_name='gemini-1.5-flash-002', tools=tool_functions, system_instruction=PERSONA)
-chat = model.start_chat(history=history, enable_automatic_function_calling=True)
 
 class UserInput(BaseModel):
     message: str
@@ -76,8 +74,14 @@ async def chat_with_scio(message: str = Form(...), user_id: str = Form(...), fil
     
     print(user_id)
     try:
+        
         print(message)
         UserContext.set_user_id(user_id)
+        memory = search_memory(message, user_id)
+        persona = scio_persona(memory)
+        model = genai.GenerativeModel(model_name='gemini-1.5-flash-002', tools=tool_functions, system_instruction=persona)
+        chat = model.start_chat(history=history, enable_automatic_function_calling=True)
+
         uploaded_files = []
         if files:
             for file in files:
@@ -100,7 +104,7 @@ async def chat_with_scio(message: str = Form(...), user_id: str = Form(...), fil
         else:
             print("no files")
             response = chat.send_message(f"User message: {message}    Notes:  - Always use the appropriate function to perform actions. Do not claim to have done something without actually calling the function. If a function is available for a specific task, use it instead of providing information from your training data.  - Avoid displaying any sensitive information like function name to me, keep it to yourself and avoid unnecessary followup questions and KEEP YOUR RESPONSE IT AS CONCISE AS POSSIBLE  ")
-        
+            add_memory(history, user_id)
             print("response here")
         return JSONResponse(content={
             "content": response.text
