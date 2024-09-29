@@ -89,9 +89,9 @@ def get_calendar_list():
         refreshing_token(user_id)
         creds = Credentials(user_info['access_token'],
                             refresh_token=user_info['refresh_token'],
-                            token_uri=os.getenv('TOKEN_URI'),
-                            client_id=os.getenv('GOOGLE_CLIENT_ID'),
-                            client_secret=os.getenv('GOOGLE_CLIENT_SECRET')
+                            token_uri=os.environ.get('TOKEN_URI'),
+                            client_id=os.environ.get('GOOGLE_CLIENT_ID'),
+                            client_secret=os.environ.get('GOOGLE_CLIENT_SECRET')
                             )
         calendar_service = build('calendar', 'v3', credentials=creds)
 
@@ -136,9 +136,9 @@ def create_calendar_event(summary: str, start_time: str, end_time: str, timezone
     refreshing_token(user_id)
     creds = Credentials(user_info['access_token'],
                         refresh_token=user_info['refresh_token'],
-                        token_uri=os.getenv('TOKEN_URI'),
-                        client_id=os.getenv('GOOGLE_CLIENT_ID'),
-                        client_secret=os.getenv('GOOGLE_CLIENT_SECRET')
+                        token_uri=os.environ.get('TOKEN_URI'),
+                        client_id=os.environ.get('GOOGLE_CLIENT_ID'),
+                        client_secret=os.environ.get('GOOGLE_CLIENT_SECRET')
                         )
     calendar_service = build('calendar', 'v3', credentials=creds)
     if timezone is None:
@@ -202,9 +202,9 @@ def quick_add_event(text: str, sendUpdates: str = None):
     refreshing_token(user_id)
     creds = Credentials(user_info['access_token'],
                         refresh_token=user_info['refresh_token'],
-                        token_uri=os.getenv('TOKEN_URI'),
-                        client_id=os.getenv('GOOGLE_CLIENT_ID'),
-                        client_secret=os.getenv('GOOGLE_CLIENT_SECRET')
+                        token_uri=os.environ.get('TOKEN_URI'),
+                        client_id=os.environ.get('GOOGLE_CLIENT_ID'),
+                        client_secret=os.environ.get('GOOGLE_CLIENT_SECRET')
                         )
     calendar_service = build('calendar', 'v3', credentials=creds)
     try:
@@ -239,9 +239,9 @@ def get_calendar_events(max_results: int = 10, query: str = None):
     refreshing_token(user_id)
     creds = Credentials(user_info['access_token'],
                         refresh_token=user_info['refresh_token'],
-                        token_uri=os.getenv('TOKEN_URI'),
-                        client_id=os.getenv('GOOGLE_CLIENT_ID'),
-                        client_secret=os.getenv('GOOGLE_CLIENT_SECRET')
+                        token_uri=os.environ.get('TOKEN_URI'),
+                        client_id=os.environ.get('GOOGLE_CLIENT_ID'),
+                        client_secret=os.environ.get('GOOGLE_CLIENT_SECRET')
                         )
     calendar_service = build('calendar', 'v3', credentials=creds)
     try:
@@ -282,9 +282,9 @@ def delete_calendar_event(event_id: str):
     refreshing_token(user_id)
     creds = Credentials(user_info['access_token'],
                         refresh_token=user_info['refresh_token'],
-                        token_uri=os.getenv('TOKEN_URI'),
-                        client_id=os.getenv('GOOGLE_CLIENT_ID'),
-                        client_secret=os.getenv('GOOGLE_CLIENT_SECRET')
+                        token_uri=os.environ.get('TOKEN_URI'),
+                        client_id=os.environ.get('GOOGLE_CLIENT_ID'),
+                        client_secret=os.environ.get('GOOGLE_CLIENT_SECRET')
                         )
     calendar_service = build('calendar', 'v3', credentials=creds)
     try:
@@ -331,9 +331,9 @@ def update_calendar_event(event_id: str, summary: str = None, start_time: str = 
     refreshing_token(user_id)
     creds = Credentials(user_info['access_token'],
                         refresh_token=user_info['refresh_token'],
-                        token_uri=os.getenv('TOKEN_URI'),
-                        client_id=os.getenv('GOOGLE_CLIENT_ID'),
-                        client_secret=os.getenv('GOOGLE_CLIENT_SECRET')
+                        token_uri=os.environ.get('TOKEN_URI'),
+                        client_id=os.environ.get('GOOGLE_CLIENT_ID'),
+                        client_secret=os.environ.get('GOOGLE_CLIENT_SECRET')
                         )
     calendar_service = build('calendar', 'v3', credentials=creds)
     if timezone is None:
@@ -396,9 +396,9 @@ def get_task_list():
     refreshing_token(user_id)
     creds = Credentials(user_info['access_token'],
                         refresh_token=user_info['refresh_token'],
-                        token_uri=os.getenv('TOKEN_URI'),
-                        client_id=os.getenv('GOOGLE_CLIENT_ID'),
-                        client_secret=os.getenv('GOOGLE_CLIENT_SECRET')
+                        token_uri=os.environ.get('TOKEN_URI'),
+                        client_id=os.environ.get('GOOGLE_CLIENT_ID'),
+                        client_secret=os.environ.get('GOOGLE_CLIENT_SECRET')
                         )
     tasks_service = build('tasks', 'v1', credentials=creds)
     try:
@@ -434,9 +434,9 @@ def create_task(title: str, due_date: str = None, notes: str = None):
     refreshing_token(user_id)
     creds = Credentials(user_info['access_token'],
                         refresh_token=user_info['refresh_token'],
-                        token_uri=os.getenv('TOKEN_URI'),
-                        client_id=os.getenv('GOOGLE_CLIENT_ID'),
-                        client_secret=os.getenv('GOOGLE_CLIENT_SECRET')
+                        token_uri=os.environ.get('TOKEN_URI'),
+                        client_id=os.environ.get('GOOGLE_CLIENT_ID'),
+                        client_secret=os.environ.get('GOOGLE_CLIENT_SECRET')
                         )
     tasks_service = build('tasks', 'v1', credentials=creds)
     task = {
@@ -492,9 +492,9 @@ def get_tasks(max_results: int = 10, query: str = None):
     refreshing_token(user_id)
     creds = Credentials(user_info['access_token'],
                         refresh_token=user_info['refresh_token'],
-                        token_uri=os.getenv('TOKEN_URI'),
-                        client_id=os.getenv('GOOGLE_CLIENT_ID'),
-                        client_secret=os.getenv('GOOGLE_CLIENT_SECRET')
+                        token_uri=os.environ.get('TOKEN_URI'),
+                        client_id=os.environ.get('GOOGLE_CLIENT_ID'),
+                        client_secret=os.environ.get('GOOGLE_CLIENT_SECRET')
                         )
     tasks_service = build('tasks', 'v1', credentials=creds)
     try:
@@ -540,9 +540,9 @@ def delete_task(task_id: str):
     refreshing_token(user_id)
     creds = Credentials(user_info['access_token'],
                         refresh_token=user_info['refresh_token'],
-                        token_uri=os.getenv('TOKEN_URI'),
-                        client_id=os.getenv('GOOGLE_CLIENT_ID'),
-                        client_secret=os.getenv('GOOGLE_CLIENT_SECRET')
+                        token_uri=os.environ.get('TOKEN_URI'),
+                        client_id=os.environ.get('GOOGLE_CLIENT_ID'),
+                        client_secret=os.environ.get('GOOGLE_CLIENT_SECRET')
                         )
     tasks_service = build('tasks', 'v1', credentials=creds)
     try:
@@ -588,9 +588,9 @@ def update_task(task_id: str, title: str = None, due_date: str = None, status: s
     refreshing_token(user_id)
     creds = Credentials(user_info['access_token'],
                         refresh_token=user_info['refresh_token'],
-                        token_uri=os.getenv('TOKEN_URI'),
-                        client_id=os.getenv('GOOGLE_CLIENT_ID'),
-                        client_secret=os.getenv('GOOGLE_CLIENT_SECRET')
+                        token_uri=os.environ.get('TOKEN_URI'),
+                        client_id=os.environ.get('GOOGLE_CLIENT_ID'),
+                        client_secret=os.environ.get('GOOGLE_CLIENT_SECRET')
                         )
     tasks_service = build('tasks', 'v1', credentials=creds)
     try:
@@ -640,9 +640,9 @@ def clear_tasks():
     refreshing_token(user_id)
     creds = Credentials(user_info['access_token'],
                         refresh_token=user_info['refresh_token'],
-                        token_uri=os.getenv('TOKEN_URI'),
-                        client_id=os.getenv('GOOGLE_CLIENT_ID'),
-                        client_secret=os.getenv('GOOGLE_CLIENT_SECRET')
+                        token_uri=os.environ.get('TOKEN_URI'),
+                        client_id=os.environ.get('GOOGLE_CLIENT_ID'),
+                        client_secret=os.environ.get('GOOGLE_CLIENT_SECRET')
                         )
     tasks_service = build('tasks', 'v1', credentials=creds)
     try:
@@ -670,9 +670,9 @@ def get_free_busy(start_time, end_time, calendar_ids=None):
     refreshing_token(user_id)
     creds = Credentials(user_info['access_token'],
                         refresh_token=user_info['refresh_token'],
-                        token_uri=os.getenv('TOKEN_URI'),
-                        client_id=os.getenv('GOOGLE_CLIENT_ID'),
-                        client_secret=os.getenv('GOOGLE_CLIENT_SECRET')
+                        token_uri=os.environ.get('TOKEN_URI'),
+                        client_id=os.environ.get('GOOGLE_CLIENT_ID'),
+                        client_secret=os.environ.get('GOOGLE_CLIENT_SECRET')
                         )
     calendar_service = build('calendar', 'v3', credentials=creds)
     if calendar_ids is None:
