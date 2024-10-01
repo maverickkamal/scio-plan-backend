@@ -107,6 +107,7 @@ async def chat_with_scio(message: str = Form(...), user_id: str = Form(...), fil
         else:
             print("no files")
             response = chat.send_message(f"User message: {message}    Notes:  - Always use the appropriate function to perform actions. Do not claim to have done something without actually calling the function. If a function is available for a specific task, use it instead of providing information from your training data.  - Avoid displaying any sensitive information like function name to me, keep it to yourself and avoid unnecessary followup questions and KEEP YOUR RESPONSE IT AS CONCISE AS POSSIBLE  ")
+            print(history)
            # add_memory(history, user_id)
             print("response here")
         return JSONResponse(content={
