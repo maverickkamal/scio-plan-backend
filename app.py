@@ -8,7 +8,7 @@ from fastapi.responses import RedirectResponse, JSONResponse  # Add JSONResponse
 from pydantic import BaseModel
 import google.generativeai as genai
 from dotenv import load_dotenv
-from utils.persona import scio_persona
+from utils.persona import *
 from plan_tools import *
 from google_auth import *
 from firebase_admin import firestore
